@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: "exchange"
+      POSTGRES_USER: "exchanger"
+      POSTGRES_PASSWORD: "io0Jae0oOhl7eeF5"
+      PGDATA: /data/postgres
+    ports:
+      - '5430:5432'
+    volumes:
+      - postgres:/data/postgres
+      - ./scripts/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+
+volumes:
+  postgres:
